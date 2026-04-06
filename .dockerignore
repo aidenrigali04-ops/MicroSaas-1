@@ -1,0 +1,10 @@
+**/node_modules
+**/.next
+**/dist
+.git
+.github
+.cursor
+.env
+.env.*
+*.log
+.DS_Store
