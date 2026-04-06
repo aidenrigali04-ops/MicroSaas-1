@@ -1,7 +1,10 @@
-# Railway: Root Directory MUST be the monorepo root (.) so workspaces resolve.
-# Custom build (recommended):
-#   Build command:  npm ci && npm run build:worker
-#   Start command:  npm run start:worker
+# Railway: Prefer Root Directory = monorepo root (.).
+#   Build:  npm ci && npm run build:worker
+#   Start:  npm run start:worker
+#
+# If Root Directory = apps/worker (Nixpacks cwd is this folder), use:
+#   Build:  npm run build:worker   (runs root npm ci + db + worker; skip extra npm ci)
+#   Start:  npm run start:worker   (defined in this package.json)
 #
 # If build fails with exit 127: `tsc`/`npm` missing — usually NODE_ENV=production
 # skipping devDependencies; this repo keeps typescript in dependencies to avoid that.

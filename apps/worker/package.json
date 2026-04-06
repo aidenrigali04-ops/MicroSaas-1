@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "start:worker": "node dist/index.js",
+    "build:worker": "npm --prefix ../.. ci && npm --prefix ../.. run build -w @clipforge/db && npm run build"
   },
   "engines": {
     "node": ">=20"
