@@ -1,0 +1,16 @@
+# Railway: Root Directory = repository root (monorepo).
+# Dashboard settings:
+#   Build command:  npm ci && npm run build:api
+#   Start command:  npm run start:api
+#   Healthcheck:    /health
+#
+# Required env: DATABASE_URL (Railway Postgres), OPENAI_API_KEY, CORS_ORIGIN (Vercel URL).
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "npm run start:api"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"

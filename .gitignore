@@ -15,6 +15,9 @@ build/
 .env
 .env.*.local
 
+# Local data (SQLite, uploads, rendered clips)
+data/
+
 # Logs & OS
 *.log
 npm-debug.log*

@@ -1,5 +1,6 @@
 import { AppHeader } from "@/components/AppHeader";
-import { UploadPanel } from "@/components/UploadPanel";
+import { ContentGeneratorPanel } from "@/components/ContentGeneratorPanel";
+import { UploadAndJobsPanel } from "@/components/UploadAndJobsPanel";
 
 export default function HomePage() {
   return (
@@ -21,7 +22,8 @@ export default function HomePage() {
               not edit longer.
             </p>
           </section>
-          <UploadPanel />
+          <ContentGeneratorPanel />
+          <UploadAndJobsPanel />
         </main>
       </div>
     </div>

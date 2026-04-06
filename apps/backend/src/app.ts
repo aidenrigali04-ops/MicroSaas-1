@@ -1,7 +1,11 @@
 import cors from "@fastify/cors";
 import multipart from "@fastify/multipart";
+import fastifyRawBody from "fastify-raw-body";
 import Fastify, { type FastifyInstance } from "fastify";
 import type { Env } from "./env.js";
+import { registerGenerateRoutes } from "./routes/generate.js";
+import { registerJobRoutes } from "./routes/jobs.js";
+import { registerStripeRoutes } from "./routes/stripe.js";
 
 const MAX_UPLOAD_BYTES = 500 * 1024 * 1024; // 500 MiB — tune per plan / infra
 
@@ -20,6 +24,13 @@ export async function buildApp(env: Env): Promise<FastifyInstance> {
     limits: { fileSize: MAX_UPLOAD_BYTES },
   });
 
+  await app.register(fastifyRawBody, {
+    field: "rawBody",
+    global: false,
+    encoding: false,
+    routes: ["/api/v1/webhooks/stripe"],
+  });
+
   app.get("/health", async () => ({
     status: "ok",
     ts: new Date().toISOString(),
@@ -30,8 +41,9 @@ export async function buildApp(env: Env): Promise<FastifyInstance> {
     version: "0.1.0",
   }));
 
-  /** Placeholder: job enqueue + status will live under /api/v1/jobs */
-  app.get("/api/v1/jobs", async () => ({ items: [], nextCursor: null }));
+  registerGenerateRoutes(app, env);
+  registerJobRoutes(app, env);
+  await registerStripeRoutes(app, env);
 
   return app;
 }

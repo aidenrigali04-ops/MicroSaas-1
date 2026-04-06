@@ -1,0 +1,17 @@
+# Railway: Root Directory MUST be the monorepo root (.) so workspaces resolve.
+# Custom build (recommended):
+#   Build command:  npm ci && npm run build:worker
+#   Start command:  npm run start:worker
+#
+# If build fails with exit 127: `tsc`/`npm` missing — usually NODE_ENV=production
+# skipping devDependencies; this repo keeps typescript in dependencies to avoid that.
+#
+# This file is optional; Railway can infer NIXPACKS. It documents intent.
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "npm run start:worker"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

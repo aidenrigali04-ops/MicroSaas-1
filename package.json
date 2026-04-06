@@ -1,0 +1,23 @@
+{
+  "name": "clipforge-monorepo",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @clipforge/db && npm run build -w @clipforge/backend && npm run build -w @clipforge/worker && npm run build -w @clipforge/frontend",
+    "build:api": "npm run build -w @clipforge/db && npm run build -w @clipforge/backend",
+    "build:worker": "npm run build -w @clipforge/db && npm run build -w @clipforge/worker",
+    "build:web": "npm run build -w @clipforge/frontend",
+    "start:api": "npm run start -w @clipforge/backend",
+    "start:worker": "npm run start -w @clipforge/worker",
+    "dev:api": "npm run dev -w @clipforge/backend",
+    "dev:worker": "npm run dev -w @clipforge/worker",
+    "dev:web": "npm run dev -w @clipforge/frontend",
+    "db:generate": "npm run db:generate -w @clipforge/db"
+  }
+}
